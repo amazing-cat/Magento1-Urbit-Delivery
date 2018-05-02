@@ -278,17 +278,12 @@ class Vaimo_UrbIt_Model_Urbit_Api
     /**
      * @param $postcode
      * @return Vaimo_UrbIt_Model_Urbit_Api_Response
-     * @throws Zend_Cache_Exception
      */
     public function validatePostcode($postcode)
     {
-        return $this->apiClient->doCachedCall(
-            "POST",
-            "postalcode/validate",
-            array(
-                "postal_code" => $postcode,
-            ),
-            3600
+        return $this->apiClient->doCall(
+            "GET",
+            "postalcodes/" . $postcode
         );
     }
 }

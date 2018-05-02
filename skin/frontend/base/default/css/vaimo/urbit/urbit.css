@@ -1,5 +1,5 @@
 #shipping_form_urbit_onehour_urbit_specific select option:disabled {
-    display:none;
+    display: none;
 }
 
 #shipping_form_urbit_onehour_urbit_specific select option[disabled] {
@@ -14,13 +14,13 @@
 
 /* overrides */
 
-.sp-methods li label  {
-    margin-left:2px;
-    display:inline;
+.sp-methods li label {
+    margin-left: 2px;
+    display: inline;
 }
 
 .sp-methods dd {
-    margin:0;
+    margin: 0;
 }
 
 #urbit_success {
@@ -46,29 +46,29 @@
 }
 
 #urbit_success h4 {
-    margin-top:5px;
-    margin-bottom:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #urbit_success p {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 #urbit_info {
-    clear:both;
+    clear: both;
     display: table;
     margin-bottom: 5px;
 }
 
 #urbit_info img {
     display: table-cell;
-    padding:5px;
+    padding: 5px;
 }
 
 #urbit_info p {
     display: table-cell;
     vertical-align: middle;
-    padding:5px;
+    padding: 5px;
 }
 
 #urbit_info a {
@@ -76,41 +76,42 @@
 }
 
 .urb-it-validator {
-    clear:both;
+    clear: both;
 }
 
 .urb-it-validator .message {
-    clear:both;
+    clear: both;
     font-weight: bold;
     color: #fff;
-    padding:5px;
+    padding: 5px;
 }
 
 .urb-it-validator .success {
-    background-color:green;
+    background-color: green;
 }
+
 .urb-it-validator .failed {
-    background-color:red;
+    background-color: red;
 }
 
 .method ul li {
-    display:none;
+    display: none;
 }
 
-.active-method ul li  {
-    display:block;
+.active-method ul li {
+    display: block;
 }
 
 #advice-require-empty-validation-shipping_delivery[hour], #advice-require-empty-validation-shipping_delivery[minute] {
-    float:right;
+    float: right;
 }
 
 .delivery-information {
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 #urbit-specific-time-block {
-    display:none;
+    display: none;
 }
 
 .urbit-delivery-input-wrapper {
@@ -125,7 +126,7 @@
     border: none;
     font-size: 15px;
     padding: 10px;
-    width:100%;
+    width: 100%;
 }
 
 .urbit-delivery-textarea {
@@ -161,9 +162,106 @@
 
 #hp_urbit_address_validation_error {
     display: none;
-    color:#F13340;
+    color: #F13340;
     font-size: 16px;
-    padding:5px 0px;
+    padding: 5px 0px;
 }
+
+.urb-it-validator {
+    background-color: #FFFFFF;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.urb-it-validator .urbit-check-postcode-input {
+    width: 60%;
+    float: left;
+    background-color: #f2f2f2;
+    height: 45px;
+    border: none;
+}
+
+.urb-it-validator .urbit-check-postcode-button {
+    width: 30%;
+    float: left;
+    background-color: #333333;
+    height: 45px;
+    color: #ffffff;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 5px;
+}
+
+.urbit-check-postcode-title-wrapper {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px 0;
+    color: #78797b;
+}
+
+.urbit-check-postcode-logo-column {
+    float: left;
+    width: 10%;
+}
+
+.urbit-check-postcode-logo {
+    width: 50px;
+    height: 50px;
+    background: url('../../../images/vaimo/urbit/urb-it_40px.png') top left no-repeat;
+    margin-top: 40%;
+}
+
+.urbit-check-postcode-input-column {
+    float: left;
+    width: 60%;
+    margin: 0 20px 10px 0;
+}
+
+.urbit-check-postcode-input-column:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.urb-it-validator:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.urbit-check-postcode-validation-message {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .urbit-check-postcode-title-wrapper {
+        font-size: 14px;
+    }
+
+    .urbit-check-postcode-logo-column {
+        display: none;
+    }
+
+    .urbit-check-postcode-input-column {
+        width: 100%;
+        display: block;
+    }
+
+    .urb-it-validator .urbit-check-postcode-input {
+        width: 100%;
+        display: block;
+    }
+
+    .urb-it-validator .urbit-check-postcode-button {
+        width: 100%;
+        display: block;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
+
 
 

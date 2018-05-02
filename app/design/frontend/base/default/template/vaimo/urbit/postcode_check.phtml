@@ -1,25 +1,53 @@
 <script>
+    jQuery(document).ready(function() {
+        jQuery.ajax({
+            url: "<?php echo Mage::getUrl("urbit/postcode/checksettings")?>",
+            type: 'post',
+            data: {},
+            success: function (response) {
+                if (response === "1") {
+                    jQuery(".urb-it-validator").show();
+                }
+            }
+        });
+    });
+
     function validatePostcode() {
-        jQuery(".urbit-submit").val("vänta!");
         var postcode = jQuery('input[name="postal_code"]').val();
+
         jQuery(".urb-it-validator .success").hide();
         jQuery(".urb-it-validator .failed").hide();
-        jQuery.get("<?php echo Mage::getUrl("urbit/postcode/validate")?>?postcode=" + postcode, function (data, status) {
-            if(data == true){
-                jQuery(".urb-it-validator .success").show();
-            }else{
-                jQuery(".urb-it-validator .failed").show();
+
+        jQuery.ajax({
+            url: "<?php echo Mage::getUrl("urbit/postcode/validate")?>?postcode=" + postcode,
+            type: 'post',
+            data: {
+                postcode: postcode
+            },
+            success: function (response) {
+                var httpCode = response.httpCode;
+
+                if (httpCode === "200") {
+                    jQuery(".urb-it-validator .success").show();
+                } else {
+                    jQuery(".urb-it-validator .failed").show();
+                }
             }
-            jQuery(".urbit-submit").val("Testa postnummer");
         });
     }
 </script>
-<!-- <div class="urb-it-validator">
-    <div>
-        <p class="title">Se om du kan handla med urb-it</p>
-        <input name="postal_code" class="urbit-postcode" placeholder="Postnummer" type="text">
-        <input type="button" class="urbit-submit button" value="Testa postnummer" onclick="validatePostcode(); return false;">
-        <p class="message success" style="display: none;">Du kan handla med urb-it!</p>
-        <p class="message failed" style="display: none;">Just nu kan du inte handla med urb-it på det postnumret. Kolla nytt postnummer</p>
+<div class="urb-it-validator">
+    <div class="urbit-check-postcode-logo-column">
+        <div class="urbit-check-postcode-logo"></div>
     </div>
-</div> -->
+    <div class="urbit-check-postcode-input-column">
+        <div class="urbit-check-postcode-title-wrapper">Can you purchase with urb-it?</div>
+        <input name="postal_code" class="urbit-postcode urbit-check-postcode-input" placeholder="Postcode" type="text">
+        <input type="button" class="urbit-submit urbit-check-postcode-button" value="Check"
+               onclick="validatePostcode(); return false;">
+    </div>
+    <div class="message success urbit-check-postcode-validation-message">Du kan handla med urb-it!</div>
+    <div class="message failed urbit-check-postcode-validation-message">Just nu kan du inte handla med urb-it på det
+        postnumret. Kolla nytt postnummer
+    </div>
+</div>

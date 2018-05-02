@@ -6,38 +6,30 @@
 class Vaimo_UrbIt_PostcodeController extends Mage_Core_Controller_Front_Action
 {
     /**
-     * @throws Zend_Cache_Exception
+     * @throws Varien_Exception
      */
     public function validateAction()
     {
-        $postcode = $this->getRequest()->getParam("postcode", false);
+        $postcode = $this->getRequest()->getPost('postcode');
 
         $postcodeCheckEnabled = Mage::getStoreConfig('carriers/' . Vaimo_UrbIt_Model_System_Config_Source_Environment::CARRIER_CODE . '/enable_postcode_check');
+
         if ($postcodeCheckEnabled) {
+            $api = Mage::getModel("vaimo_urbit/urbit_api", new Vaimo_UrbIt_Model_Urbit_Api_Client());
 
-            if ($postcode !== "") {
-                //hack to use urbits wp instead of api
-                $validPostCode = $this->_checkZipCode($postcode);
-            } else {
-                $validPostCode = false;
-            }
+            $response = $api->validatePostcode($postcode);
 
-            if (!$validPostCode) {
-                $this->getResponse()->setHeader('Content-type', 'application/json');
-                $this->getResponse()->setBody(json_encode($validPostCode));
-                return;
-            }
+            $this->getResponse()->setHeader('Content-type', 'application/json');
+            $this->getResponse()->setBody(json_encode($response));
         }
+    }
 
-        /** @var Vaimo_UrbIt_Model_Urbit_Api $api */
-        $api = Mage::getModel("vaimo_urbit/urbit_api", new Vaimo_UrbIt_Model_Urbit_Api_Client());
-
-        $response = $api->validatePostcode($postcode);
-
-        $status = $response->getSuccess();
+    public function checksettingsAction()
+    {
+        $postcodeCheckEnabled = Mage::getStoreConfig('carriers/' . Vaimo_UrbIt_Model_System_Config_Source_Environment::CARRIER_CODE . '/enable_postcode_check');
 
         $this->getResponse()->setHeader('Content-type', 'application/json');
-        $this->getResponse()->setBody(json_encode($status));
+        $this->getResponse()->setBody(json_encode($postcodeCheckEnabled));
     }
 
     /**
