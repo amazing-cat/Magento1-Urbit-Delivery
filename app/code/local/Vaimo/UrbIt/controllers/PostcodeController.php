@@ -20,7 +20,7 @@ class Vaimo_UrbIt_PostcodeController extends Mage_Core_Controller_Front_Action
             $response = $api->validatePostcode($postcode);
 
             $this->getResponse()->setHeader('Content-type', 'application/json');
-            $this->getResponse()->setBody(json_encode($response));
+            $this->getResponse()->setBody(json_encode($response->getResponse()));
         }
     }
 

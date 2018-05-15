@@ -1,5 +1,5 @@
 <script>
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         jQuery.ajax({
             url: "<?php echo Mage::getUrl("urbit/postcode/checksettings")?>",
             type: 'post',
@@ -19,15 +19,13 @@
         jQuery(".urb-it-validator .failed").hide();
 
         jQuery.ajax({
-            url: "<?php echo Mage::getUrl("urbit/postcode/validate")?>?postcode=" + postcode,
+            url: "<?php echo Mage::getUrl("urbit/postcode/validate")?>",
             type: 'post',
             data: {
                 postcode: postcode
             },
             success: function (response) {
-                var httpCode = response.httpCode;
-
-                if (httpCode === "200") {
+                if (response.hasOwnProperty("inside_delivery_area") && response.inside_delivery_area === "yes") {
                     jQuery(".urb-it-validator .success").show();
                 } else {
                     jQuery(".urb-it-validator .failed").show();
