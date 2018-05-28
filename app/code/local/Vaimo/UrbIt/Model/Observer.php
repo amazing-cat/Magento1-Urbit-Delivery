@@ -159,6 +159,7 @@ class Vaimo_UrbIt_Model_Observer
                     $this->sendUpdateCheckout($order->getId());
                     $order->setData('urbit_triggered', 'true');
                     $order->save();
+                    $this->cleanupOrder($order);
                 }
             }
         }
@@ -183,6 +184,7 @@ class Vaimo_UrbIt_Model_Observer
                 $this->sendUpdateCheckout($order->getId());
                 $order->setData('urbit_triggered', 'true');
                 $order->save();
+                $this->cleanupOrder($order);
             }
         }
 
@@ -219,6 +221,33 @@ class Vaimo_UrbIt_Model_Observer
 
         $api = Mage::getModel("vaimo_urbit/urbit_api", new Vaimo_UrbIt_Model_Urbit_Api_Client());
         $responseObj = $api->updateCheckout($checkoutId, $requestArray);
+    }
+
+
+    /**
+     * Cleanup data from order, that no more needs
+     * @param $order
+     */
+    public function cleanupOrder($order)
+    {
+        $attributes = array(
+            'urbit_delivery_time',
+            'urbit_message',
+            'urbit_first_name',
+            'urbit_last_name',
+            'urbit_street',
+            'urbit_city',
+            'urbit_postcode',
+            'urbit_phone_number',
+            'urbit_email',
+        );
+
+        
+        foreach ($attributes as $attrName) {
+            $order->setData($attrName, '');
+        }
+
+        $order->save();
     }
 
     /**
