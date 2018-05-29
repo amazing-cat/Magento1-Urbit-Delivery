@@ -1,3 +1,48 @@
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+</style>
+
+<div class="tooltip"><img src="<?php echo $this->getSkinUrl('images/vaimo/urbit/information.png'); ?>" style="padding-top:2px;">
+  <span class="tooltiptext">Choose the place where you want to get your order, we will bring it to you in less than 2 hours or at specific time, as simple as that.</span>
+</div>
+
 <?php
 
 $code = $this->getRateCode();
@@ -74,19 +119,19 @@ $code = $this->getRateCode();
         <div class="hp_urbit_validation_error_message" id="hp_urbit_address_validation_error">
             <p>Malformed address / Address outside the delivery area</p>
         </div>
-        <p class="hp_urbit_terms">By using Urb-it service you accept the 
+        <p class="hp_urbit_terms">By using Urb-it service you accept the
             <a target="_blank" href="https://urb-it.com/terms-of-service">
             terms
             </a>
-             and agree with 
+             and agree with
             <br>
-             the 
+             the
             <a target="_blank" href="https://urb-it.com/privacy-policy">
                 privacy policy
             </a>
              for this service.
          </p>
-         
+
     </li>
 </ul>
 
@@ -104,5 +149,3 @@ $code = $this->getRateCode();
     });
     /*]]>*/
 </script>
-
-
