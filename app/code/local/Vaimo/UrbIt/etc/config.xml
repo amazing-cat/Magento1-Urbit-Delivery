@@ -1,7 +1,7 @@
 <?xml version="1.0" ?><config>
     <modules>
         <Vaimo_UrbIt>
-            <version>0.1.58</version>
+            <version>1.1.59</version>
         </Vaimo_UrbIt>
     </modules>
     <global>

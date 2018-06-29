@@ -156,6 +156,8 @@ class Vaimo_UrbIt_Model_Urbit_Api_Client
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HTTPHEADER     => $headers,
+            CURLOPT_USERAGENT      => 'Magento1-Urbit-Delivery/' . 
+                Mage::getConfig()->getNode()->modules->Vaimo_UrbIt->version . ' (Magento ver ' . Mage::getVersion() . ')',
         );
 
         if ($method === "POST" || $method === "PUT") {
